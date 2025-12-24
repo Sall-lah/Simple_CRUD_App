@@ -131,46 +131,9 @@ body {
     flex: 1;
 }
 
-.section-title {
-    color: #2d3748;
-    font-size: 20px;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #e2e8f0;
-}
-
-.content-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    margin-bottom: 40px;
-}
-
-.content-card {
-    background-color: white;
-    border-radius: 8px;
-    padding: 25px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    border-top: 4px solid #3182ce;
-}
-
-.content-card h3 {
-    color: #2d3748;
-    margin-bottom: 15px;
-    font-size: 18px;
-}
-
-.content-card p {
-    color: #4a5568;
-    line-height: 1.5;
-    font-size: 14px;
-}
-
-.content-card i {
-    font-size: 24px;
-    color: #3182ce;
-    margin-bottom: 15px;
-}
+/* .table{
+    margin-bottom: 30px;
+} */
 
 .data-table {
     width: 100%;
@@ -178,12 +141,12 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .table-header {
     background-color: #f7fafc;
-    padding: 15px 20px;
+    padding: 15px 20px 15px 0px;
     border-bottom: 1px solid #e2e8f0;
     font-weight: bold;
     color: #2d3748;
@@ -191,7 +154,7 @@ body {
 
 .table-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     padding: 15px 20px;
     border-bottom: 1px solid #e2e8f0;
 }
@@ -202,6 +165,16 @@ body {
 
 .table-row:last-child {
     border-bottom: none;
+}
+
+.table-pagination-button {
+    padding: 5px 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    color: #2d3748;
+    background-color: #f7fafc;
+    cursor: pointer;
 }
 
 /* Footer */
@@ -216,18 +189,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.footer-links a {
-    color: #cbd5e0;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 14px;
-}
-
-.footer-links a:hover {
-    color: white;
-    text-decoration: underline;
 }
 
 .copyright {
