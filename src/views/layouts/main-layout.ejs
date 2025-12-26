@@ -1,7 +1,30 @@
-<%- include('../components/header') %>
+<!DOCTYPE html>
+<html lang="en">
 
-<%- include('../components/navbar') %>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>App demo</title>
+    <!-- Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="css/base.css">
+    <!-- Page Styles -->
+     <link rel="stylesheet" href="css/page_style/<%= page_style %>.css">
+</head>
 
-<%- include(page) %>
+<body>
+    <%- include('../components/navbar') %>
 
-<%- include('../components/footer') %>
+    <div class="main-content">
+    <%- include('../components/header') %>
+
+    <%- include(page) %>
+
+    <%- include('../components/footer') %>
+    </div>
+
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

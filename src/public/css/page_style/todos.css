@@ -1,0 +1,48 @@
+.data-table {
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.table-header {
+    background-color: #f7fafc;
+    padding: 15px 20px 15px 0px;
+    border-bottom: 1px solid #e2e8f0;
+    font-weight: bold;
+    color: #2d3748;
+}
+
+/* Hialngkan garis table-row yang berada di div table-header */
+.table-header .table-row:last-of-type {
+    border-bottom: none;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 50px repeat(4, 1fr);
+    padding: 15px 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.table-row:nth-child(even) {
+    background-color: #f7fafc;
+}
+
+.table-pagination-button {
+    padding: 5px 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    color: #2d3748;
+    background-color: #f7fafc;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.table-pagination-button:hover {
+    background-color: #4a5568;
+    color: white;
+}

@@ -5,6 +5,17 @@ const router = express.Router();
 router.get('/', (req, res) => {
   res.render('layouts/main-layout', { 
     page: '../pages/todos',
+    title: 'Todos',
+    page_style: 'todos',
+  });
+});
+
+// Home route
+router.get('/add', (req, res) => {
+  res.render('layouts/main-layout', { 
+    page: '../pages/add-task',
+    title: 'Add Task',
+    page_style: 'add-task',
   });
 });
 
