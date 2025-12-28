@@ -1,0 +1,11 @@
+<% data.forEach((element, index) => { %>
+    <div class="table-row">
+        <div><%= index + 1 %>.</div>
+        <div><%= element.taskName %></div>
+        <div><%= element.taskDescription %></div>
+        <div><%= element.taskDate %></div>
+        <div id="table-checkbox">
+            <input class="checkbox" type="checkbox" name="checkbox" value="true">
+        </div>
+    </div>
+<% }) %>

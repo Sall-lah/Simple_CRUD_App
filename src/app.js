@@ -12,6 +12,9 @@ app.use(express.static(path.join(__dirname, 'public'))); // Serve static files f
 // Import routes
 const indexRoutes = require('./routes/index');
 
+// API Routes
+app.use('/api/task', require('./routes/taskRoutes'));
+
 // Use routes
 app.use('/', indexRoutes);
 

@@ -6,7 +6,7 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* The main boy container */
+/* The main body container */
 body {
     display: flex;
     flex-direction: row;

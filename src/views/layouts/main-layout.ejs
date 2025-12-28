@@ -10,7 +10,7 @@
     <!-- Base Styles -->
     <link rel="stylesheet" href="css/base.css">
     <!-- Page Styles -->
-     <link rel="stylesheet" href="css/page_style/<%= page_style %>.css">
+     <link rel="stylesheet" href="css/<%= page_style %>.css">
 </head>
 
 <body>
@@ -18,8 +18,10 @@
 
     <div class="main-content">
     <%- include('../components/header') %>
-
-    <%- include(page) %>
+    <!-- Content -->
+    <div class="content">
+        <%- include(page) %>
+    </div>
 
     <%- include('../components/footer') %>
     </div>

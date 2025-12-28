@@ -9,7 +9,7 @@
 
 .table-header {
     background-color: #f7fafc;
-    padding: 15px 20px 15px 0px;
+    padding: 15px 0px 15px 0px;
     border-bottom: 1px solid #e2e8f0;
     font-weight: bold;
     color: #2d3748;
@@ -22,13 +22,24 @@
 
 .table-row {
     display: grid;
-    grid-template-columns: 50px repeat(4, 1fr);
+    grid-template-columns: 10vh repeat(3, 1fr) 10vh;
     padding: 15px 20px;
     border-bottom: 1px solid #e2e8f0;
 }
 
 .table-row:nth-child(even) {
     background-color: #f7fafc;
+}
+
+#table-checkbox {
+    display: flex;
+    /* justify-content: center; */ /* pikirin lagi cuy */ 
+    /* align-items: start; */
+}
+
+.checkbox {
+    /* masih error */
+    border: 0px;
 }
 
 .table-pagination-button {

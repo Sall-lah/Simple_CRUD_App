@@ -2,56 +2,53 @@
     <!-- Task Name -->
     <div class="form-row">
         <label for="taskName" class="form-label fw-bold">
-            <i class="fas fa-heading me-2"></i>Task Name *
+            <!-- <i class="fas fa-heading me-2"></i> -->
+            Task Name *
         </label>
-        <input type="text" id="taskName" name="taskName" class="form-control form-control-lg"
+        <input type="text" id="taskName" name="taskName" class="form-control form-style"
             placeholder="Enter task name (e.g., 'Complete project report')" required autofocus>
-        <div class="form-text">
+        <!-- <div class="form-text">
             Keep it concise and descriptive
-        </div>
+        </div> -->
     </div>
 
     <!-- Task Description -->
     <div class="form-row">
         <label for="taskDescription" class="form-label fw-bold">
-            <i class="fas fa-align-left me-2"></i>Task Description
+            <!-- <i class="fas fa-align-left me-2"></i> -->
+            Task Description *
         </label>
-        <textarea id="taskDescription" name="taskDescription" class="form-control" rows="5"
+        <textarea id="taskDescription" name="taskDescription" class="form-control form-style" rows="3"
             placeholder="Describe the task in detail (optional)"></textarea>
-        <div class="form-text">
+        <!-- <div class="form-text">
             Include any important details, requirements, or notes
-        </div>
+        </div> -->
     </div>
 
     <!-- Due Date with Date Picker -->
     <div class="form-row">
         <label for="dueDate" class="form-label fw-bold">
-            <i class="fas fa-calendar-alt me-2"></i>Due Date
+            <!-- <i class="fas fa-calendar-alt me-2"></i> -->
+            Due Date *
         </label>
-        <div class="input-group">
-            <span class="input-group-text">
+        <div class="form-control">
+            <!-- <span class="input-group-text">
                 <i class="fas fa-clock"></i>
-            </span>
-            <input type="date" id="start" name="trip-start" value="2025-12-25" min="1920-01-01" max="2120-12-31" />
+            </span> -->
+            <input class="form-style" type="date" id="start" name="taskDate" value="2025-12-25" min="1920-01-01" max="2120-12-31" />
         </div>
-        <div class="form-text">
+        <!-- <div class="form-text">
             Click to select date and time
-        </div>
+        </div> -->
     </div>
 
     <!-- Action Buttons -->
-    <div class="d-flex justify-content-between mt-5">
-        <button type="button" class="btn btn-outline-secondary" id="clearForm">
+    <div class="form-row">
+        <button type="button" class="form-btn" id="clearForm">
             <i class="fas fa-eraser me-2"></i>Clear Form
         </button>
-
-        <div>
-            <button type="button" class="btn btn-outline-primary me-2" id="previewTask">
-                <i class="fas fa-eye me-2"></i>Preview
-            </button>
-            <button type="submit" class="btn btn-success btn-lg" id="submitBtn">
-                <i class="fas fa-paper-plane me-2"></i>Create Task
-            </button>
-        </div>
+        <button type="submit" class="form-btn" id="submitBtn">
+            <i class="fas fa-paper-plane me-2"></i>Create Task
+        </button>
     </div>
 </form>
