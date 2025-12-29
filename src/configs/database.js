@@ -13,6 +13,7 @@ const pool = mysql.createPool({
   waitForConnections: true,
 });
 
+// Test the connection (Not required)
 (async () => {
   try {
     const connection = await pool.getConnection();
@@ -24,5 +25,5 @@ const pool = mysql.createPool({
   }
 })();
 
-
+// Exports connection pool
 module.exports = pool;
