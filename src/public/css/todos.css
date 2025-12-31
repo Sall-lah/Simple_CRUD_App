@@ -22,7 +22,7 @@
 
 .table-row {
     display: grid;
-    grid-template-columns: 10vh repeat(3, 1fr) 10vh;
+    grid-template-columns: 5vw repeat(3, 1fr) 5vw;
     padding: 15px 20px;
     border-bottom: 1px solid #e2e8f0;
 }

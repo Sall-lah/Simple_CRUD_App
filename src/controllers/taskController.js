@@ -19,6 +19,11 @@ class TaskController {
     try {
       const taskId = req.params.taskId;
       const task = await Task.findTaskById(taskId);
+
+      if (tasks.length === 0){
+        throw new Error('No Task Found');
+      }
+      
       res.json({ success: true, data: task });
     }
     catch (error) {
@@ -28,14 +33,11 @@ class TaskController {
 
   async getTaskPagination(req, res) {
     try {
-      const page = req.params.page;
+      const page = parseInt(req.params.page);
       const tasks = await Task.findPagination(page);
+      const {pageCount, count}  = await Task.pageCount();
 
-      if (tasks.length === 0){
-        throw new Error('No Task Found');
-      }
-      
-      res.json({ success: true, data: tasks });
+      res.json({ success: true, data: {tasks: tasks, page: page, pageCount: pageCount, count: count}});
     } catch (error) {
       res.status(500).json({ success: false, message: error.message });
     }

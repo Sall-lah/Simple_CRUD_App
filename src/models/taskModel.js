@@ -1,22 +1,31 @@
 const pool = require('../configs/database');
 
 class Task {
-    static async findAllTask() {
+    async findAllTask() {
         const [rows, fields] = await pool.query('SELECT * FROM tasks');
-        console.log(fields);
+        // console.log(fields);
         return rows;
     }
 
     findTaskById = async(taskId) => {
         const [rows, fields] = await pool.query('SELECT * FROM tasks WHERE id = ?', [taskId]);
-        console.log(fields);
+        // console.log(fields);
         return rows;
     }
 
     async findPagination(page) {
+        // Naive Pagination (without last page)
         const [rows, fields] = await pool.query('SELECT * FROM tasks LIMIT 10 OFFSET ?', [page * 10]);
-        console.log(fields);
+        // console.log(fields);
         return rows;
+    }
+
+    pageCount = async() => {
+        // You can set limit
+        const [rows] = await pool.query('SELECT COUNT(*) as count FROM tasks');
+        const count = rows[0].count;
+        const pageCount = Math.ceil(count / 10);
+        return {pageCount, count};
     }
 
     createTask = async(taskName, taskDescription, dueDate) => {
