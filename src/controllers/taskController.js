@@ -37,7 +37,7 @@ class TaskController {
       const tasks = await Task.findPagination(page);
       const {pageCount, count}  = await Task.pageCount();
 
-      res.json({ success: true, data: {tasks: tasks, page: page, pageCount: pageCount, count: count}});
+      res.json({ success: true, data: {tasks: tasks, page: page + 1, pageCount: pageCount, count: count}});
     } catch (error) {
       res.status(500).json({ success: false, message: error.message });
     }

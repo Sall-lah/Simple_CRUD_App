@@ -5,22 +5,26 @@ const task = require('../repositories/taskRepository');
 // Home route
 router.get('/', async (req, res) => {
   // const page = req.body?.page ?? 0; // Default to page 0 if no page provided (i like this one)
-  const page = req.query.page ?? 0;
+  const page = req.query.page ?? 1;
 
-  task_data = await task.getTask(page);
+  if (page < 1) {
+    return res.redirect('/?page=1');
+  }
+
+  const task_data = await task.getTask(page - 1);
+  const totalData = task_data.data.count;
+  const totalPage = task_data.data.pageCount;
 
   // Need to rework pagination query
-  if ((task_data.data.pageCount - 1) < page && task_data.data.count != 0) {
-    res.redirect('/?page=0');
+  if ((page > totalPage || page < 1) && totalData != 0) { 
+    return res.redirect('/?page=1');
   }
-  else {
-    res.render('layouts/main-layout', {
-      page: '../pages/todos',
-      title: 'Todos',
-      page_style: 'todos',
-      task_data,
-    });
-  }
+  return res.render('layouts/main-layout', {
+    page: '../pages/todos',
+    title: 'Todos',
+    page_style: 'todos',
+    task_data,
+  });
 });
 
 // Home route

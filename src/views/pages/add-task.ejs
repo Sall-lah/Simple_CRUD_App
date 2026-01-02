@@ -2,44 +2,29 @@
     <!-- Task Name -->
     <div class="form-row">
         <label for="taskName" class="form-label fw-bold">
-            <!-- <i class="fas fa-heading me-2"></i> -->
             Task Name *
         </label>
         <input type="text" id="taskName" name="taskName" class="form-control form-style"
             placeholder="Enter task name (e.g., 'Complete project report')" required autofocus>
-        <!-- <div class="form-text">
-            Keep it concise and descriptive
-        </div> -->
     </div>
 
     <!-- Task Description -->
     <div class="form-row">
         <label for="taskDescription" class="form-label fw-bold">
-            <!-- <i class="fas fa-align-left me-2"></i> -->
             Task Description *
         </label>
         <textarea id="taskDescription" name="taskDescription" class="form-control form-style" rows="3"
-            placeholder="Describe the task in detail (optional)"></textarea>
-        <!-- <div class="form-text">
-            Include any important details, requirements, or notes
-        </div> -->
+            placeholder="Describe the task in detail (optional)" required></textarea>
     </div>
 
     <!-- Due Date with Date Picker -->
     <div class="form-row">
-        <label for="dueDate" class="form-label fw-bold">
-            <!-- <i class="fas fa-calendar-alt me-2"></i> -->
+        <label for="taskDueDate" class="form-label fw-bold">
             Due Date *
         </label>
         <div class="form-control">
-            <!-- <span class="input-group-text">
-                <i class="fas fa-clock"></i>
-            </span> -->
-            <input class="form-style" type="date" id="start" name="taskDate" value="2025-12-25" min="1920-01-01" max="2120-12-31" />
+            <input class="form-style" type="date" id="taskDueDate" name="taskDate" value="2025-12-25" min="1920-01-01" max="2120-12-31" required>
         </div>
-        <!-- <div class="form-text">
-            Click to select date and time
-        </div> -->
     </div>
 
     <!-- Action Buttons -->
@@ -52,3 +37,5 @@
         </button>
     </div>
 </form>
+
+<script src="/js/add-task.js"></script>
