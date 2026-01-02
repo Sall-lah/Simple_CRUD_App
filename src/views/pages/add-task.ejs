@@ -4,8 +4,13 @@
         <label for="taskName" class="form-label fw-bold">
             Task Name *
         </label>
-        <input type="text" id="taskName" name="taskName" class="form-control form-style"
+        <div class="form-control">
+            <input type="text" id="taskName" name="taskName" class="form-style"
             placeholder="Enter task name (e.g., 'Complete project report')" required autofocus>
+            <div class="invalid-feedback" id="invalid-name-feedback">
+                Invalid task name
+            </div>
+        </div>
     </div>
 
     <!-- Task Description -->
@@ -13,9 +18,15 @@
         <label for="taskDescription" class="form-label fw-bold">
             Task Description *
         </label>
-        <textarea id="taskDescription" name="taskDescription" class="form-control form-style" rows="3"
+        <div class="form-control">
+            <textarea id="taskDescription" name="taskDescription" class="form-style" rows="3"
             placeholder="Describe the task in detail (optional)" required></textarea>
+            <div class="invalid-feedback" id="invalid-description-feedback">
+                Invalid task name
+            </div>
+        </div>
     </div>
+    
 
     <!-- Due Date with Date Picker -->
     <div class="form-row">
@@ -23,9 +34,15 @@
             Due Date *
         </label>
         <div class="form-control">
-            <input class="form-style" type="date" id="taskDueDate" name="taskDate" value="2025-12-25" min="1920-01-01" max="2120-12-31" required>
+            <div>
+                <input class="form-style" type="date" id="taskDueDate" name="taskDate" value="2025-12-25" min="1920-01-01" max="2120-12-31" required>
+            </div>
+            <div class="invalid-feedback" id="invalid-date-feedback">
+                Invalid due date
+            </div>
         </div>
     </div>
+    
 
     <!-- Action Buttons -->
     <div class="form-row">

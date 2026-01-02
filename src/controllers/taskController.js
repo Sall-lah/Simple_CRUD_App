@@ -20,7 +20,7 @@ class TaskController {
       const taskId = req.params.taskId;
       const task = await Task.findTaskById(taskId);
 
-      if (tasks.length === 0){
+      if (task.length === 0){
         throw new Error('No Task Found');
       }
       
