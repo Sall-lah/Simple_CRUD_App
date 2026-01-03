@@ -35,7 +35,7 @@
         </label>
         <div class="form-control">
             <div>
-                <input class="form-style" type="date" id="taskDueDate" name="taskDate" value="2025-12-25" min="1920-01-01" max="2120-12-31" required>
+                <input class="form-style" type="date" id="taskDueDate" name="taskDate" value="" min="1920-01-01" max="2120-12-31" required>
             </div>
             <div class="invalid-feedback" id="invalid-date-feedback">
                 Invalid due date
@@ -49,9 +49,13 @@
         <button type="button" class="form-btn" id="clearForm">
             <i class="fas fa-eraser me-2"></i>Clear Form
         </button>
-        <button type="submit" class="form-btn" id="submitBtn">
+        <button type="button" class="form-btn" id="submitBtn">
             <i class="fas fa-paper-plane me-2"></i>Create Task
         </button>
+    </div>
+
+    <div id="form-success">
+        <i class="fas fa-check-circle"></i> Task created successfully        
     </div>
 </form>
 

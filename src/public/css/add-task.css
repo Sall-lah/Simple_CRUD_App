@@ -60,3 +60,11 @@
     font-size: 12px;
     display: none;
 }
+
+#form-success {
+    color: green;
+    font-size: 18px;
+    display: none;
+    justify-content: center;
+    padding: 50px;
+}
