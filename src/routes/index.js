@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const task = require('../repositories/taskRepository');
+const requireAuth = require('../middlewares/auth');
 
 // Home route
-router.get('/', async (req, res) => {
+router.get('/', requireAuth, async (req, res) => {
   // const page = req.body?.page ?? 0; // Default to page 0 if no page provided (i like this one)
   const page = req.query.page ?? 1;
 
@@ -28,12 +29,17 @@ router.get('/', async (req, res) => {
 });
 
 // Home route
-router.get('/add', (req, res) => {
+router.get('/add', requireAuth, (req, res) => {
   res.render('layouts/main-layout', { 
     page: '../pages/add-task',
     title: 'Add Task',
     page_style: 'add-task',
   });
+});
+
+// Login route
+router.get('/login', (req, res) => {
+  res.render('layouts/login-layout');
 });
 
 module.exports = router;

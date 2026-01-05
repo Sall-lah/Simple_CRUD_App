@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <div class="login-container">
+    <h1>Login</h1>
+    <h2>Sign in using</h2>
+
+    <!-- Redirects directly to backend OAuth endpoint -->
+    <form action="/auth/google" method="GET">
+      <button type="submit" class="login-btn">
+        <img src="images/google.webp">
+      </button>
+    </form>
+  </div>
+</body>
+</html>

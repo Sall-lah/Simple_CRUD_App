@@ -1,0 +1,57 @@
+/* Global reset/ base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* The main body container */
+body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center ;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.login-container {
+    width: 400px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+}    
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #2d3748;
+    font-size: 24px;
+}
+
+.login-container h1{
+    margin-bottom: 20px;
+    color: #2d3748;
+}
+
+.login-btn {
+    background-color: #ffffff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn img{ 
+    width: 40px;
+    height: 40px;
+    /* object-fit: contain; */
+    margin-right: 8px;
+}
