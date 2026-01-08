@@ -1,4 +1,5 @@
-const oauthClient = require('../configs/Oauth');
+const oauthClient = require('../configs/googleAuth');
+const User = require('../models/userModel');
 
 class OauthController {
     login = (req, res) => {
@@ -7,7 +8,6 @@ class OauthController {
             scope: ["openid", "email", "profile"],
             prompt: "consent"
         })
-
         res.redirect(url)
     }
 
@@ -15,11 +15,9 @@ class OauthController {
         const code = req.query.code
 
         if (!code) {
-            // hmmm
             // return res.status(400).send("Missing authorization code")
             return res.redirect("/")
         }
-
         try {
             // Exchange code for tokens
             const { tokens } = await oauthClient.getToken(code)
@@ -40,16 +38,21 @@ class OauthController {
                 picture: payload.picture
             }
 
-            // TODO: Save or find user in DB
+            // Check if user already exists
+            const response = await User.getUserDetail(user.googleId);
+            // Create new user on DB if user doesn't exist
+            if (response.length === 0) {
+                await User.createUser(user.googleId, user.email, user.name, user.picture);
+            }
+
             // Create session
-            // Coba req.cookies nanti
-            res.cookie("session", user.googleId, {
+            res.cookie("id", user.googleId, {
                 httpOnly: true,
                 secure: false, // true in production (HTTPS)
                 sameSite: "lax",
                 maxAge: 1000 * 60 * 60 * 24 // 24 hours (Session Exparation)
             })
-            console.log(req.cookies.session);
+            console.log(req.cookies);
 
             res.redirect("/")
         } catch (err) {

@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const OauthController = require('../controllers/OauthController');
+const googleAuthController = require('../controllers/googleAuthController');
 
 // Route to Oauth Page
-router.get("/google", OauthController.login);
+router.get("/google", googleAuthController.login);
 
 // Route to Oauth Callback (aka what page loaded after the Oauth)
-router.get("/google/callback", OauthController.callback);
+router.get("/google/callback", googleAuthController.callback);
 
 
 module.exports = router;
