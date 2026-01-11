@@ -1,7 +1,7 @@
 const oauthClient = require('../configs/googleAuth');
 const User = require('../models/userModel');
 
-class OauthController {
+class googleAuthController {
     login = (req, res) => {
         const url = oauthClient.generateAuthUrl({
             access_type: "offline",
@@ -46,7 +46,7 @@ class OauthController {
             }
 
             // Create session
-            res.cookie("id", user.googleId, {
+            res.cookie("sessionId", user.googleId, {
                 httpOnly: true,
                 secure: false, // true in production (HTTPS)
                 sameSite: "lax",
@@ -62,4 +62,4 @@ class OauthController {
     }
 }
 
-module.exports = new OauthController();
+module.exports = new googleAuthController();

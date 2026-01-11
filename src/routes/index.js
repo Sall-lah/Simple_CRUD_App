@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const task = require('../repositories/taskRepository');
+const task = require('../services/taskRepository');
 const requireAuth = require('../middlewares/auth');
 
 // Home route

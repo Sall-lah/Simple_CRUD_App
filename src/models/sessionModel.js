@@ -6,12 +6,12 @@ class Session{
     }
 
     getUserIdBySessionId = async (id) => {
-        const [rows, fields] = await pool.query('SELECT user_id FROM sessions WHERE id = ?', [id]);
+        const [rows, fields] = await pool.query('SELECT user_id, expires_at FROM sessions WHERE id = ? AND expires_at > NOW()', [id]);
         return rows;
     }
 
-    checkSessionStatus = async (id) => {
-        const [rows, fields] = await pool.query('SELECT expires_at, created_at FROM sessions WHERE id = ?', [id]);
+    updateSession = async (id) => {
+        const [rows, fields] = await pool.query('UPDATE sessions SET expires_at = NOW() + INTERVAL 1 DAY WHERE id = ?', [id]);
         return rows;
     }
 

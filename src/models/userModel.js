@@ -2,7 +2,7 @@ const pool = require('../configs/database');
 
 class User {
     getUserDetail = async (id) => {
-        const [rows, fields] = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
+        const [rows, fields] = await pool.query('SELECT name, email, image_link FROM users WHERE id = ?', [id]);
         return rows;
     }
 
@@ -11,13 +11,18 @@ class User {
         return rows;
     }
 
-    checkEmail = async (email) => {
-        const [rows, fields] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+    updateUserDetail = async (id, name, email, image_link) => {
+        const [rows, fields] = await pool.query('UPDATE users SET name = ?, email = ?, image_link = ? WHERE id = ?', [name, email, image_link, id]);
         return rows;
     }
 
     deleteUser = async (id) => {
         const [rows, fields] = await pool.query('DELETE FROM users WHERE id = ?', [id]);
+        return rows;
+    }
+    
+    checkEmail = async (email) => {
+        const [rows, fields] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
         return rows;
     }
 }
