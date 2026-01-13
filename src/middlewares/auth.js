@@ -11,7 +11,7 @@ const requireAuth = async(req, res, next) =>{
 
   const rows = await Session.getUserIdBySessionId(sessionId);
 
-  // Session expired
+  // if Session expired or Not found
   if (!rows.length) {
     res.clearCookie("session_id");
     await Session.deleteSession(sessionId);
