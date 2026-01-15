@@ -1,14 +1,15 @@
 const oauthClient = require('../configs/googleAuth');
-const User = require('../models/userModel');
+const AuthService = require('../services/authService');
 
 class AuthController {
-    // password login
+    // NOTE:
+    
+    // On work
+    // passwordLogin = (req, res) => {
 
-    // google login
+    // }
 
-    // logout
-
-    login = (req, res) => {
+    googleLogin = (req, res) => {
         const url = oauthClient.generateAuthUrl({
             access_type: "offline",
             scope: ["openid", "email", "profile"],
@@ -17,7 +18,7 @@ class AuthController {
         res.redirect(url)
     }
 
-    callback = async (req, res) => {
+    googleCallback = async (req, res) => {
         const code = req.query.code
 
         if (!code) {
@@ -44,27 +45,31 @@ class AuthController {
                 picture: payload.picture
             }
 
-            // Check if user already exists
-            const response = await User.getUserDetail(user.googleId);
-            // Create new user on DB if user doesn't exist
-            if (response.length === 0) {
-                await User.createUser(user.googleId, user.email, user.name, user.picture);
+            const session = await AuthService.login("google", user.googleId);
+            
+            if(session.status === "failed") {
+                console.log("Authentication failed");
+                return res.redirect("/");
             }
-
+            
             // Create session
-            res.cookie("sessionId", user.googleId, {
+            res.cookie("sessionId", session.id, {
                 httpOnly: true,
                 secure: false, // true in production (HTTPS)
                 sameSite: "lax",
-                maxAge: 1000 * 60 * 60 * 24 // 24 hours (Session Exparation)
+                maxAge: session.expiresAt // 24 hours (Session Exparation)
             })
-            console.log(req.cookies);
+            // console.log(req.cookies);
 
             res.redirect("/")
         } catch (err) {
             console.error(err)
             res.status(500).send("Authentication failed")
         }
+    }
+
+    logout = async(req, res) => {
+        
     }
 }
 

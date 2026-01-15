@@ -7,10 +7,10 @@ class AuthIdentity {
             [id, user_id, provider, provider_id]);
         return rows;
     }
-
-    getUserIdByAuthId = async (id) => {
-        const [rows, fields] = await pool.query('SELECT user_id FROM auth_identities WHERE id = ?',
-            [id]);
+    
+    getUserIdByProviderId = async (providerId, provider) => {
+        const [rows, fields] = await pool.query('SELECT user_id FROM auth_identities WHERE provider_id = ? AND provider = ?',
+            [providerId, provider]);
         return rows;
     }
 

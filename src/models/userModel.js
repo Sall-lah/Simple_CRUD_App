@@ -1,6 +1,11 @@
 const pool = require('../configs/database');
 
 class User {
+    resolve = async (id) => {
+        const [rows, fields] = await pool.query('SELECT id FROM users WHERE id = ?', [id]);
+        return rows;
+    }
+
     getUserDetail = async (id) => {
         const [rows, fields] = await pool.query('SELECT name, email, image_link FROM users WHERE id = ?', [id]);
         return rows;
