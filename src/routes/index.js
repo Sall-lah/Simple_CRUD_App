@@ -39,6 +39,7 @@ router.get('/add', requireAuth, (req, res) => {
 
 // Login route
 router.get('/login', (req, res) => {
+  console.log(req.cookies);
   res.render('layouts/login-layout');
 });
 

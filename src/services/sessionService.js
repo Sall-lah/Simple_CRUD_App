@@ -16,11 +16,11 @@ class sessionService {
     const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
     const createdAt = new Date(Date.now());
     const sessionId = randomUUID();
-    const session = await Session.create(sessionId, user[0].id, expiresAt, createdAt);
+    await Session.createSession(sessionId, user[0].id, expiresAt, createdAt);
 
     return {
       status: "success",
-      id: session,
+      id: sessionId,
       expiresAt
     };
   }

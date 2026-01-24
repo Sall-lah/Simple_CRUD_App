@@ -13,7 +13,7 @@ class User {
 
     createUser = async (id, name, email, image_link) => {
         const [rows, fields] = await pool.query('INSERT INTO users (id, name, email, image_link) VALUES (?, ?, ?, ?)', [id, name, email, image_link]);
-        return rows;
+        return id;
     }
 
     updateUserDetail = async (id, name, email, image_link) => {

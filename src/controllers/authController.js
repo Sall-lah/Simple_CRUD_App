@@ -3,7 +3,7 @@ const AuthService = require('../services/authService');
 
 class AuthController {
     // NOTE:
-    
+    // Please Refactor
     // On work
     // passwordLogin = (req, res) => {
 
@@ -45,11 +45,18 @@ class AuthController {
                 picture: payload.picture
             }
 
-            const session = await AuthService.login("google", user.googleId);
+            let session = await AuthService.login(user.googleId, "google");
             
+            // if Authentication failed or new user
             if(session.status === "failed") {
-                console.log("Authentication failed");
-                return res.redirect("/");
+                // Step 1 Create User
+                const userId = await AuthService.createUser(user.name, user.email, user.picture);
+
+                // Step 2 Create AuthIdentity
+                await AuthService.createAuthIdentity(userId, "google", user.googleId);
+
+                // Step 3 Create Session
+                session = await AuthService.login(user.googleId, "google");
             }
             
             // Create session

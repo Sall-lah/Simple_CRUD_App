@@ -1,8 +1,7 @@
 const Session = require("../models/sessionModel");
-const { randomUUID } = require("crypto");
 
 const requireAuth = async(req, res, next) =>{
-  const sessionId = req.cookies.session
+  const sessionId = req.cookies.sessionId
 
   // No Session on Cookies
   if (!sessionId) {
@@ -20,7 +19,7 @@ const requireAuth = async(req, res, next) =>{
     await Session.updateSession(sessionId);
   }
   
-  // Attch userId to req.userId
+  // Attach userId to req.userId
   req.userId = rows[0].user_id;
   next()
 }

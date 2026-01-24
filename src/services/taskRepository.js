@@ -12,7 +12,7 @@ class task {
 
     getTask = async (page) => {
         try {
-            const tasks = await fetch(`http://localhost:3000/api/task/pagination/${page}`);
+            const tasks = await fetch(`http://localhost:3000/api/task/${page}`);
             return this.parseResponse(tasks);
         } 
         catch (error) {
