@@ -76,7 +76,9 @@ class AuthController {
     }
 
     logout = async(req, res) => {
-        
+        await AuthService.logout(req.cookies.sessionId);
+        res.clearCookie("sessionId");
+        res.redirect("/");
     }
 }
 

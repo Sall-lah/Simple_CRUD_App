@@ -17,6 +17,11 @@ class AuthService {
       status: "failed",
       message: "Authentication not found"
     };
+  } 
+
+  logout = async (sessionId) => {
+    const response = await SessionService.delete(sessionId);
+    return response;
   }
 
   createAuthIdentity = async (user_id, provider, provider_id) => {
