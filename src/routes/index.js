@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const task = require('../services/taskRepository');
-const requireAuth = require('../middlewares/auth');
+const task = require('../services/taskService');
+const requireAuth = require('../middlewares/authMiddleware');
 
 // Home route
 router.get('/', requireAuth, async (req, res) => {
@@ -11,7 +11,7 @@ router.get('/', requireAuth, async (req, res) => {
   if (page < 1) {
     return res.redirect('/?page=1');
   }
-
+  
   const task_data = await task.getTask(page - 1);
   const totalData = task_data.data.count;
   const totalPage = task_data.data.pageCount;

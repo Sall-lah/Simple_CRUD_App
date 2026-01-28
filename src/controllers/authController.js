@@ -1,14 +1,18 @@
 const oauthClient = require('../configs/googleAuth');
 const AuthService = require('../services/authService');
+const UserService = require('../services/accountService');
 
 class AuthController {
     // NOTE:
     // Please Refactor
     // On work
+    // + Pisahin antara Frontend sama Backend
+
     // passwordLogin = (req, res) => {
 
     // }
 
+    // Google Login
     googleLogin = (req, res) => {
         const url = oauthClient.generateAuthUrl({
             access_type: "offline",
@@ -17,7 +21,6 @@ class AuthController {
         })
         res.redirect(url)
     }
-
     googleCallback = async (req, res) => {
         const code = req.query.code
 
@@ -50,7 +53,7 @@ class AuthController {
             // if Authentication failed or new user
             if(session.status === "failed") {
                 // Step 1 Create User
-                const userId = await AuthService.createUser(user.name, user.email, user.picture);
+                const userId = await UserService.create(user.name, user.email, user.picture);
 
                 // Step 2 Create AuthIdentity
                 await AuthService.createAuthIdentity(userId, "google", user.googleId);
@@ -75,10 +78,25 @@ class AuthController {
         }
     }
 
+    // Logout from account
     logout = async(req, res) => {
         await AuthService.logout(req.cookies.sessionId);
         res.clearCookie("sessionId");
         res.redirect("/");
+    }
+
+    // Unlink User
+    deleteAuthIdentity = async (req, res) => {
+        try {
+            const userId = req.userId;
+            const provider = req.body.provider;
+            await AuthService.deleteAuthIdentity(userId, provider);
+            res.clearCookie("sessionId");
+            res.redirect("/");
+        }
+        catch (e) {
+            res.status(500).json({ success: false, message: e.message });
+        }
     }
 }
 

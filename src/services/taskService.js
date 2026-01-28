@@ -1,4 +1,4 @@
-class task {
+class taskService {
     parseResponse = async (response) => {
         try {
             response = await response.json();
@@ -39,4 +39,4 @@ class task {
     }
 }
 
-module.exports = new task();
+module.exports = new taskService();

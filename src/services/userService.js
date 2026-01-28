@@ -1,5 +1,4 @@
 const UserModel = require('../models/userModel');
-const { randomUUID } = require("crypto");
 
 class userService {
     resolve = async (userId) => {
@@ -15,23 +14,23 @@ class userService {
         }
     }
 
-    create = async (name, email, image_link = "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250") => {
-        try {
-            const userId = randomUUID();
-            await UserModel.resolve(userId, name, email, image_link);
+    // create = async (name, email, image_link = "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250") => {
+    //     try {
+    //         const userId = randomUUID();
+    //         await UserModel.resolve(userId, name, email, image_link);
 
-            return {
-                status: "success",
-                message: "User created successfully",
-            };
-        }
-        catch (e) {
-            return {
-                status: "failed",
-                message: e
-            };
-        }
-    }
+    //         return {
+    //             status: "success",
+    //             message: "User created successfully",
+    //         };
+    //     }
+    //     catch (e) {
+    //         return {
+    //             status: "failed",
+    //             message: e
+    //         };
+    //     }
+    // }
 
     delete = async (userId) => {
         try {

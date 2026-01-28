@@ -11,19 +11,16 @@ app.set('views', path.join(__dirname, 'views')); // Set the views directory path
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from the 'public' directory
 app.use(cookieParser()) // parse cookie
 
-// Import routes
-const indexRoutes = require('./routes/index');
+// Authentication routes
+app.use('/auth', require('./routes/authRoutes'));
 
-// Google Oauth Routes
-app.use('/auth', require('./routes/Oauth'));
-
-// API Routes
+// API routes
 app.use('/api/task', require('./routes/taskRoutes'));
 
-// Use routes
-app.use('/', indexRoutes);
+// View routes
+app.use('/', require('./routes/index'));
 
-// 404 handler
+// 404 handler (Incase Error Appears)
 app.use('/', (req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });

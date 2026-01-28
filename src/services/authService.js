@@ -1,6 +1,5 @@
 // services/AuthService.js
 const AuthIdentityModel = require("../models/authIdentityModel");
-const UserModel = require("../models/userModel");
 const SessionService = require("./sessionService");
 const { randomUUID } = require("crypto");
 
@@ -15,7 +14,7 @@ class AuthService {
 
     return {
       status: "failed",
-      message: "Authentication not found"
+      message: "Authentication failed"
     };
   } 
 
@@ -30,10 +29,13 @@ class AuthService {
     return authIdentity;
   }
 
-  createUser = async (username, email, picture) => {
-    const userId = randomUUID();
-    const user = await UserModel.createUser(userId, username, email, picture);
-    return user;
+  deleteAuthIdentity = async (user_id, provider) => {
+    const authId = await AuthIdentityModel.getProviderIdByUserId(user_id, provider);
+    const authIdentity = await AuthIdentityModel.deleteAuthIdentity(authId);
+    return {
+      status: "success",
+      data: authIdentity,
+    };
   }
 }
 

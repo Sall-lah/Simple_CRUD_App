@@ -8,9 +8,15 @@ class AuthIdentity {
         return rows;
     }
     
-    getUserIdByProviderId = async (providerId, provider) => {
+    getUserIdByProviderId = async (provider_id, provider) => {
         const [rows, fields] = await pool.query('SELECT user_id FROM auth_identities WHERE provider_id = ? AND provider = ?',
-            [providerId, provider]);
+            [provider_id, provider]);
+        return rows;
+    }
+
+    getProviderIdByUserId = async (user_id, provider) => {
+        const [rows, fields] = await pool.query('SELECT provider_id FROM auth_identities WHERE user_id = ? AND provider = ?',
+            [user_id, provider]);
         return rows;
     }
 

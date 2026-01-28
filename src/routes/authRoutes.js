@@ -1,10 +1,24 @@
-// import express from "express";
-// const router = express.Router();
-// import AuthController from "../controllers/authController.js";
+const express = require('express');
+const router = express.Router();
+const authController = require('../controllers/authController');
+const requireAuth = require('../middlewares/authMiddleware');
+const userController = require('../controllers/userController');
 
-// router.post("/password", AuthController.loginWithPassword);
-// router.post("/google", AuthController.loginWithGoogle);
-// router.post("/google/callback", AuthController.loginWithGoogle);
-// router.post("/logout", AuthController.logout);
+// Route to Oauth Page
+router.get("/google", authController.googleLogin);
 
-// export default router;
+// Route to Oauth Callback (aka what page loaded after the Oauth)
+router.get("/google/callback", authController.googleCallback);
+
+router.post("/logout", requireAuth, authController.logout);
+
+router.delete("/identity", requireAuth, authController.deleteAuthIdentity);
+
+router.delete("/account", requireAuth, userController.delete);
+
+// This is only for testing
+router.delete("/deleteTest", userController.deleteTest);
+
+// Make routes to see all linked accounts
+
+module.exports = router;

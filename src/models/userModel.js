@@ -2,7 +2,7 @@ const pool = require('../configs/database');
 
 class User {
     resolve = async (id) => {
-        const [rows, fields] = await pool.query('SELECT id FROM users WHERE id = ?', [id]);
+        const [rows, fields] = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
         return rows;
     }
 

@@ -1,28 +1,26 @@
 const SessionModel = require('../models/sessionModel');
-const UserServices = require('../services/userService');
 const { randomUUID } = require("crypto");
 
 class sessionService {
   create = async (userId) => {
-    const user = await UserServices.resolve(userId);
+    try {
+      const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
+      const createdAt = new Date(Date.now());
+      const sessionId = randomUUID();
+      await SessionModel.createSession(sessionId, user[0].id, expiresAt, createdAt);
 
-    if(user.length === 0){
-      return { 
-        status: "failed",
-        message: "User not found"
+      return {
+        status: "success",
+        id: sessionId,
+        expiresAt
       };
     }
-
-    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
-    const createdAt = new Date(Date.now());
-    const sessionId = randomUUID();
-    await SessionModel.createSession(sessionId, user[0].id, expiresAt, createdAt);
-
-    return {
-      status: "success",
-      id: sessionId,
-      expiresAt
-    };
+    catch (e) {
+      return {
+        status: "failed",
+        message: e
+      };
+    }
   }
 
   delete = async (sessionId) => {
