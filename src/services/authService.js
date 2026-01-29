@@ -6,7 +6,7 @@ const { randomUUID } = require("crypto");
 class AuthService {
   login = async (providerId, provider) => {
     const authIdentity = await AuthIdentityModel.getUserIdByProviderId(providerId, provider);
-
+    
     if (authIdentity.length > 0) {
       const session = await SessionService.create(authIdentity[0].user_id);
       return session;

@@ -1,6 +1,6 @@
 const oauthClient = require('../configs/googleAuth');
 const AuthService = require('../services/authService');
-const UserService = require('../services/accountService');
+const UserService = require('../services/userService');
 
 class AuthController {
     // NOTE:
@@ -53,10 +53,10 @@ class AuthController {
             // if Authentication failed or new user
             if(session.status === "failed") {
                 // Step 1 Create User
-                const userId = await UserService.create(user.name, user.email, user.picture);
+                const response = await UserService.create(user.name, user.email, user.picture);
 
                 // Step 2 Create AuthIdentity
-                await AuthService.createAuthIdentity(userId, "google", user.googleId);
+                await AuthService.createAuthIdentity(response.data.id, "google", user.googleId);
 
                 // Step 3 Create Session
                 session = await AuthService.login(user.googleId, "google");
@@ -79,25 +79,57 @@ class AuthController {
     }
 
     // Logout from account
-    logout = async(req, res) => {
-        await AuthService.logout(req.cookies.sessionId);
-        res.clearCookie("sessionId");
-        res.redirect("/");
-    }
+    logout = async (req, res) => {
+        try {
+            const sessionId = req.cookies.sessionId;
+
+            if (sessionId) {
+                await AuthService.logout(sessionId);
+                res.clearCookie("sessionId");
+            }
+
+            return res.status(204).end(); // No Content
+        } catch (e) {
+            console.error("Logout error:", e);
+            return res.status(500).json({
+                success: false,
+                message: "Failed to logout"
+            });
+        }
+    };
 
     // Unlink User
+    // Unlink User Auth Provider
     deleteAuthIdentity = async (req, res) => {
         try {
-            const userId = req.userId;
-            const provider = req.body.provider;
+            const userId = req.user.id; // asumsi dari auth middleware
+            const { provider } = req.body;
+
+            if (!provider) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Provider is required"
+                });
+            }
+
             await AuthService.deleteAuthIdentity(userId, provider);
+
+            // Optional: logout user setelah unlink
             res.clearCookie("sessionId");
-            res.redirect("/");
+
+            return res.status(200).json({
+                success: true,
+                message: "Auth identity deleted"
+            });
+        } catch (e) {
+            console.error("Delete auth identity error:", e);
+
+            return res.status(500).json({
+                success: false,
+                message: "Failed to delete auth identity"
+            });
         }
-        catch (e) {
-            res.status(500).json({ success: false, message: e.message });
-        }
-    }
+    };
 }
 
 module.exports = new AuthController();
