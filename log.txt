@@ -1,0 +1,14 @@
+Dev Log
+Log 1.
+Di frontend index bisa req.cookies
+Di requireAuth pas fetching bakend req.cookies gabisa
+
+frontend routes -> requireAuth (Bisa)
+frontend routes -> fetch backend routes -> backend routes -> requireAuth (Error) ga bisa req.cookies
+
+index.js juga belum di benerin
+
+Log 2.
+Get task udah bisa
+
+tinggal benerin addtask sama folder strucutre

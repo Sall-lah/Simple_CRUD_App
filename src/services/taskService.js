@@ -10,9 +10,13 @@ class taskService {
         }
     }
 
-    getTask = async (page) => {
+    getTask = async (page, session) => {
         try {
-            const tasks = await fetch(`http://localhost:3000/api/task/${page}`);
+            const tasks = await fetch(`http://localhost:3000/api/task/${page}`, {
+                headers: {
+                    cookie: session
+                }
+            });
             return this.parseResponse(tasks);
         } 
         catch (error) {
@@ -26,7 +30,8 @@ class taskService {
             const tasks = await fetch('http://localhost:3000/api/task/add', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    cookie: session
                 },
                 body: JSON.stringify({taskName, taskDescription, dueDate})
             });

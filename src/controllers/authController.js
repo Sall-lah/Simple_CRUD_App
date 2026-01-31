@@ -64,6 +64,7 @@ class AuthController {
             
             // Create session
             res.cookie("sessionId", session.id, {
+                path: "/", // Kalo server nya beda pake cors
                 httpOnly: true,
                 secure: false, // true in production (HTTPS)
                 sameSite: "lax",

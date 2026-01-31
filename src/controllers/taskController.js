@@ -5,8 +5,8 @@ const { randomUUID } = require("crypto");
 class TaskController {
   getTaskPagination = async(req, res) => {
     try {
-      const userId = req.userId;
-      const { page } = parseInt(req.params);
+      const userId = req.user.id;
+      const { page }  = req.params;
       const tasks = await Task.displayTask(userId, page);
       const { pageCount, count }  = await Task.pageCount(userId);
 

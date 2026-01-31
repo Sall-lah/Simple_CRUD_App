@@ -4,15 +4,15 @@ const task = require('../services/taskService');
 const requireAuth = require('../middlewares/authMiddleware');
 
 // Home route
-router.get('/', requireAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   // const page = req.body?.page ?? 0; // Default to page 0 if no page provided (i like this one)
   const page = req.query.page ?? 1;
 
   if (page < 1) {
     return res.redirect('/?page=1');
   }
-  
-  const task_data = await task.getTask(page - 1);
+
+  const task_data = await task.getTask(page - 1, req.headers.cookie);
   const totalData = task_data.data.count;
   const totalPage = task_data.data.pageCount;
 
@@ -29,7 +29,7 @@ router.get('/', requireAuth, async (req, res) => {
 });
 
 // Home route
-router.get('/add', requireAuth, (req, res) => {
+router.get('/add', (req, res) => {
   res.render('layouts/main-layout', { 
     page: '../pages/add-task',
     title: 'Add Task',
@@ -39,7 +39,6 @@ router.get('/add', requireAuth, (req, res) => {
 
 // Login route
 router.get('/login', (req, res) => {
-  console.log(req.cookies);
   res.render('layouts/login-layout');
 });
 
