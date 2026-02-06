@@ -5,8 +5,13 @@ class Session{
         const [rows, fields] = await pool.query('INSERT INTO sessions (id, user_id, expires_at, created_at) VALUES (?, ?, ?, ?)', [id, user_id, expires_at, created_at]);
     }
 
+    // getUserIdBySessionId = async (id) => {
+    //     const [rows, fields] = await pool.query('SELECT user_id, expires_at FROM sessions WHERE id = ? AND expires_at > NOW()', [id]);
+    //     return rows;
+    // }
+
     getUserIdBySessionId = async (id) => {
-        const [rows, fields] = await pool.query('SELECT user_id, expires_at FROM sessions WHERE id = ? AND expires_at > NOW()', [id]);
+        const [rows, fields] = await pool.query('SELECT user_id, expires_at FROM sessions WHERE id = ?', [id]);
         return rows;
     }
 

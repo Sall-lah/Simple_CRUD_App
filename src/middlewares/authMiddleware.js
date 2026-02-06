@@ -4,7 +4,7 @@ const userService = require("../services/userService");
 const requireAuth = async (req, res, next) => {
   const logoutAndRedirect = () => {
     res.clearCookie("sessionId");
-    return res.redirect("/login");
+    res.status(302).json({ success: false, message: "Unauthorized" });
   };
 
   try {
@@ -14,7 +14,7 @@ const requireAuth = async (req, res, next) => {
     if (!sessionId) {
       return logoutAndRedirect();
     }
-    
+
     // 2. Invalid / expired session
     const sessions = await Session.getUserIdBySessionId(sessionId);
     if (!sessions?.length) {

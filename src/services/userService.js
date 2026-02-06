@@ -2,6 +2,19 @@ const UserModel = require('../models/userModel');
 const { randomUUID } = require("crypto");
 
 class userService {
+    getProfile = async (userId) => {
+        try {
+            const response = await UserModel.getUserDetail(userId);
+            return response;
+        }
+        catch (e) {
+            return {
+                status: "failed",
+                message: e
+            };
+        }
+    }
+
     resolve = async (userId) => {
         try {
             const response = await UserModel.resolve(userId);
@@ -38,7 +51,8 @@ class userService {
 
     delete = async (userId) => {
         try {
-            await UserModel.deleteUser(userId);
+            const response = await UserModel.deleteUser(userId);
+            console.log(userId)
             return {
                 status: "success",
                 message: "User deleted successfully",

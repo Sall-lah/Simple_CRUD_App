@@ -4,16 +4,20 @@ const CONFIG = {
 };
 
 // Make post request to api
-const addTask = async (taskName, taskDescription, dueDate) => {
+const addTask = async (title, description, dueDate) => {
     try {
         const tasks = await fetch(`${CONFIG.API_BASE_URL}/api/task/add`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ taskName, taskDescription, dueDate })
+            body: JSON.stringify({ title, description, dueDate})
         });
-        return this.parseResponse(tasks);
+        return console.log({
+            status: "success",
+            message: "Task added successfully",
+            data: tasks
+        });
     }
     catch (error) {
         console.log(error);
@@ -42,9 +46,9 @@ submitBtn.addEventListener("click", async() => {
         const successDisplay = document.getElementById("form-success");
         successDisplay.style.display = "flex";
 
-        // await addTask(taskName, taskDescription, taskDueDate);
+        await addTask(taskNameValue, taskDescriptionValue, taskDueDateValue);
         // const data = await task.addTask(taskName, taskDescription, taskDueDate);
-        console.log({taskNameValue, taskDescriptionValue, taskDueDateValue});
+        // console.log({taskNameValue, taskDescriptionValue, taskDueDateValue});
     }
 });
 

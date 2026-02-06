@@ -22,6 +22,7 @@ app.use('/auth', require('./routes/authRoutes'));
 
 // API routes
 app.use('/api/task', require('./routes/taskRoutes'));
+app.use('/api/user', require('./routes/userRoutes'));
 
 // View routes
 app.use('/', require('./routes/index'));

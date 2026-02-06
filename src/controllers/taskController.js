@@ -6,7 +6,7 @@ class TaskController {
   getTaskPagination = async(req, res) => {
     try {
       const userId = req.user.id;
-      const { page }  = req.params;
+      const page = parseInt(req.params.page);
       const tasks = await Task.displayTask(userId, page);
       const { pageCount, count }  = await Task.pageCount(userId);
 
@@ -18,7 +18,7 @@ class TaskController {
 
   addTask = async (req, res) => {
     try {
-      const userId = req.userId;
+      const userId = req.user.id;
       const { title, description, dueDate } = await req.body;
       const taskId = randomUUID();
       const response = await Task.createTask(taskId, userId, title, description, dueDate);

@@ -10,5 +10,19 @@ index.js juga belum di benerin
 
 Log 2.
 Get task udah bisa
-
 tinggal benerin addtask sama folder strucutre
+
+log 3.
+Udah bisa nambah task
+tingal bikin user page buat setting account sama nambah fitur hapus task
+
+log 4.
+todo ->
+tambah gambar di profile
+query database pas update (jangan lupa autentikasinya)
+tambahkan fitur hapus task
+tambahkan fitur edit task
+
+log 5.
+todo ->
+Final update FE sama logout dan delete account

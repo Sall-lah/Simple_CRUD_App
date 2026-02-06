@@ -1,0 +1,159 @@
+.profile-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    padding: 15px 20px;
+}
+
+.profile-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+#profile-image-container {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+}
+
+#profile-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: filter 0.2s ease;
+    /* display: block; */
+}
+
+/* overlay text */
+.avatar-overlay {
+    width: 96px;
+    height: 96px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+
+    background-color: rgba(0, 0, 0, 0.45);
+    border-radius: 50%;
+
+    opacity: 0;
+    pointer-events: auto;
+    transition: opacity 0.2s ease;
+}
+
+/* hover behavior */
+#profile-image-container:hover .avatar-overlay {
+    opacity: 1;
+}
+
+#profile-image-container:hover #profile-avatar {
+    filter: blur(2px);
+}
+
+
+.profile-label {
+    flex: 0 0 12vh
+}
+
+.profile-value {
+    flex: 1;
+}
+
+.profile-edit-form {
+    display: none;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: opacity 0.2s ease;
+}
+
+#username-input {
+    flex: 1;
+    padding: 4px 9px;
+    border-radius: 4px;
+    border: 1px solid #4a5568;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.profile-button {
+    padding: 4px 9px;
+    border-radius: 4px;
+    border: 1px solid #4a5568;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s;
+}
+
+.interaction-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#delete-account-button {
+    border-color: red;
+    background-color: red;
+    color: white;
+}
+
+#logout-account-button {
+    border-color: green;
+    background-color: green;
+    color: white;
+}
+
+#edit-username-button {
+    background-color: #4a5568;
+    color: white;
+}
+
+#submit-button, #cancel-button {
+    border-color: #4a5568;
+    background-color: #4a5568;
+    color: white;
+}
+
+.profile-button:hover {
+    cursor: pointer;
+}
+
+#delete-account-button:hover,
+#logout-account-button:hover,
+#edit-username-button:hover, 
+#submit-button:hover,
+#cancel-button:hover {
+    color: #4a5568;
+    background-color: white;
+}
+
+#edit-username-button:hover {
+    color: #4a5568;
+}
+
+#delete-account-button:hover {
+    color: red;
+}
+
+#logout-account-button:hover {
+    color: green;
+}

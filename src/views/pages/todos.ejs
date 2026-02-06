@@ -11,11 +11,11 @@
     </div>
     <div class="table-body">
         <% if (task_data.data.page <= (task_data.data.pageCount)) { %>
-            <% task_data.data.tasks.forEach((element) => { %>
+            <% task_data.data.tasks.forEach((element, index) => { %>
             <div class="table-row">
-                <div><%= element.id %>.</div>
-                <div><%= element.task_name %></div>
-                <div><%= element.task_description %></div>
+                <div><%= index + 1 + ((task_data.data.page - 1) * 10) %> .</div>
+                <div><%= element.title %></div>
+                <div><%= element.description %></div>
                 <div><%= element.due_date %></div>
                 <div id="table-checkbox">
                     <input class="checkbox" type="checkbox" name="checkbox" value="true">

@@ -1,0 +1,35 @@
+<div class="profile-column">
+    <div class="profile-row">
+        <div id="profile-image-container">
+            <img src="<%=user.image_link%>" id="profile-avatar">
+            <span class="avatar-overlay">Edit profile image</span>
+        </div>
+    </div>
+
+    <div class="profile-row">
+        <label class="profile-label">Name</label>
+        <div class="profile-value"> USER NAME</div>
+        <button class="profile-button" id="edit-username-button">
+            Edit Username
+        </button>
+    </div>
+
+    <div class="profile-row" id="edit-username-container" hidden>
+        <form class="profile-edit-form" id="edit-username-form"> 
+            <input type="text" name="username" id="username-input" required />
+            <button class="profile-button" id="submit-button" type="submit">OK</button>
+            <button class="profile-button" id="cancel-button">Cancel</button>
+        </form>
+    </div>
+
+    <div class="interaction-row">
+        <button class="profile-button" id="logout-account-button">
+            Logout
+        </button>
+        <button class="profile-button" id="delete-account-button">
+            Delete Account
+        </button>
+    </div>
+</div>
+
+<script src="/js/profile-script.js"></script>
