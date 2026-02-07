@@ -26,3 +26,6 @@ tambahkan fitur edit task
 log 5.
 todo ->
 Final update FE sama logout dan delete account
+
+log 5.
+sisa edit task (kapan kapan).

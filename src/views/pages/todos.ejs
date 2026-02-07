@@ -6,7 +6,7 @@
             <div>Task Name</div>
             <div>Description</div>
             <div>Due Date</div>
-            <div>Status</div>
+            <div>Option</div>
         </div>
     </div>
     <div class="table-body">
@@ -17,8 +17,10 @@
                 <div><%= element.title %></div>
                 <div><%= element.description %></div>
                 <div><%= element.due_date %></div>
-                <div id="table-checkbox">
-                    <input class="checkbox" type="checkbox" name="checkbox" value="true">
+                <div class="table-button">
+                    <button class="delete-button" id="delete-button" data-task-id="<%= element.id %>">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
                 </div>
             </div>
             <% }) %>
@@ -36,3 +38,5 @@
 <% if (task_data.data.page < (task_data.data.pageCount)) { %>
     <a href=<%= `/?page=${task_data.data.page + 1}` %> class="table-pagination-button">></a>
 <% } %>
+
+<script src="/js/index-script.js"></script>

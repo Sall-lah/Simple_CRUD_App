@@ -3,7 +3,7 @@ const pool = require('../configs/database');
 class Task {
     displayTask = async(user_id, page) => {
         // Naive Pagination (without last page)
-        const [rows, fields] = await pool.query('SELECT title, description, due_date, status FROM tasks WHERE user_id = ? LIMIT 10 OFFSET ?', [user_id, page * 10]);
+        const [rows, fields] = await pool.query('SELECT id, title, description, due_date, status FROM tasks WHERE user_id = ? LIMIT 10 OFFSET ?', [user_id, page * 10]);
         // console.log(fields);
         return rows;
     }

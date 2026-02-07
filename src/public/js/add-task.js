@@ -8,6 +8,7 @@ const addTask = async (title, description, dueDate) => {
     try {
         const tasks = await fetch(`${CONFIG.API_BASE_URL}/api/task/add`, {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
